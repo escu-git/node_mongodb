@@ -130,7 +130,7 @@ db.products.find({price:{$gt:2000}});
 db.products.find({},{"item":1}).skip(2).limit(1).sort({price:1});
 
 db.products.update({},
-    {$set : {"stock":10}},
+    {$set : {"stock":100}},
     {
         upsert:false,
         multi:true
@@ -140,3 +140,13 @@ db.products.update({},
 db.products.find({price:{$gt:2000}}).update({stock:0}
 );
 
+db.products.deleteMany({price:{$lt:1000}})
+
+use admin
+db.createUser({
+    user:'Pepe',
+    pwd:'asd456',
+    roles:[
+        {role:'read', db:'desafio18'}
+    ]
+})
