@@ -1,0 +1,142 @@
+use desafio18
+
+db.products.insertMany([
+    {
+        item:'cuadro1',
+        price:300,
+        size:'small'
+    },
+    {
+        item:'cuadro2',
+        price:400,
+        size:'small'
+    },
+    {
+        item:'cuadro3',
+        price:600,
+        size:'small'
+    },
+     {
+        item:'cuadro4',
+        price:650,
+        size:'medium'
+    },
+    {
+        item:'cuadro5',
+        price:700,
+        size:'medium'
+    },
+    {
+        item:'cuadro6',
+        price:800,
+        size:'medium'
+    },
+    {
+        item:'cuadro7',
+        price:900,
+        size:'big'
+    },
+    {
+        item:'cuadro8',
+        price:1400,
+        size:'big'
+    },
+    {
+        item:'cuadro9',
+        price:2000,
+        size:'XL'
+    },
+    {
+        item:'cuadro10',
+        price:3000,
+        size:'XL'
+    },
+])
+
+db.messages.insertMany([
+    {
+        msg:'Hola',
+        user:'Pablo',
+        date:'19/10/2021'
+    },
+    {
+        msg:'Hola',
+        user:'Juani',
+        date:'19/10/2021'
+    },{
+        msg:'Hola',
+        user:'Pablo',
+        date:'19/10/2021'
+    },
+    {
+        msg:'Hola',
+        user:'Juani',
+        date:'19/10/2021'
+    },{
+        msg:'Hola',
+        user:'Pablo',
+        date:'19/10/2021'
+    },
+    {
+        msg:'Hola',
+        user:'Juani',
+        date:'19/10/2021'
+    },{
+        msg:'Hola',
+        user:'Pablo',
+        date:'19/10/2021'
+    },
+    {
+        msg:'Hola',
+        user:'Juani',
+        date:'19/10/2021'
+    },{
+        msg:'Hola',
+        user:'Pablo',
+        date:'19/10/2021'
+    },
+    {
+        msg:'Hola',
+        user:'Juani',
+        date:'19/10/2021'
+    },
+])
+
+db.products.find().pretty();
+db.messages.find().pretty();
+
+db.products.count()
+db.messages.count()
+
+db.products.insert({
+    item:'cuadro11',
+    price:2200,
+    size:'XL'
+})
+
+db.products.find({item:'cuadro1'});
+
+db.products.find({price:{$lt:1000}});
+
+db.products.find({
+    $and:[
+        {price:{$lt:3000}},
+        {price:{$gt:1000}}
+    ]
+})
+
+db.products.find({price:{$gt:2000}});
+
+db.products.find({},{"item":1}).skip(2).limit(1).sort({price:1});
+
+db.products.update({},
+    {$set : {"stock":10}},
+    {
+        upsert:false,
+        multi:true
+    }
+);
+
+db.products.find({price:{$gt:2000}}).update({stock:0}
+);
+
